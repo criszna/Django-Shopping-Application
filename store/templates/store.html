@@ -1,0 +1,35 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block contents %}
+<!-- data- is used to define custom attribute eg data-action="add" u can access action attribute in backend using dataset.action-->
+        <div class="row side-pane">
+            <div class="col-lg-12 box-element list-cat">
+                {% for main_category,sub_category in main_cat_filter.items %}
+                    <h4>{{main_category}}</h4>
+                    <div class="filter-box">
+                        {% for category in sub_category %}
+                            <input type="checkbox"  name="checkbox" value="{{category}}" class="filter-checkbox">
+                            <label>{{category.sub_category}}</label><br>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <br><br>
+            <button  class="btn btn-warning" id="filterbtn"><strong>filter</strong></button>
+        </div>
+
+	<div class="row" id="filter-sel">
+        {% for product in products %}
+		<div class="col-lg-4">
+			<div class="box-element product">
+                <img class="thumbnail" src="{{product.imageURL}}"><br>
+                <h6><strong>{{product.name}}</strong></h6>
+                <hr>
+                <button class="btn btn-outline-secondary add-btn update-cart" data-product={{product.id}} data-action="add">Add to Cart</button>
+                <a class=" btn btn-outline-success" href="{% url 'store:detailitem' id=product.id %}">View</a>
+                <h4 style="display:inline-block;float:right"><strong>Rs {{product.price}}</strong></h4>
+			</div>
+		</div>
+        {% endfor %}
+    </div>
+{% endblock %}

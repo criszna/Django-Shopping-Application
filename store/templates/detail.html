@@ -1,0 +1,20 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block contents %}
+
+    <div class="box-element product">
+        <div class="row detail">
+            <div class="col-lg-4 detail-col1">
+                <img class="thumbnail" src="{{product.imageURL}}"><br>
+            </div>
+            <div class="col-lg-6">
+                <h6><strong>{{product.name}}</strong></h6>
+                <h6><strong>Description</strong></h6>
+                <div class="desc">{{product.description}}</div>
+                <hr>
+                <button class="btn btn-outline-secondary add-btn update-cart" data-product={{product.id}} data-action="add">Add to Cart</button>
+                <h4 style="display:inline-block;float:right"><strong>Rs {{product.price}}</strong></h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}
